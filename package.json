@@ -1,0 +1,24 @@
+{
+  "name": "social-deployment",
+  "version": "0.0.0",
+  "description": "A workpalce social CMS built on microservice pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/citkane/social.git"
+  },
+  "author": "Michael Jonker",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/citkane/social/issues"
+  },
+  "homepage": "https://github.com/citkane/social#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3"
+  }
+}
