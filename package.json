@@ -1,8 +1,8 @@
 {
-  "name": "social-deployment",
+  "name": "social",
   "version": "0.0.0",
   "description": "A workpalce social CMS built on microservice pattern",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
