@@ -1,0 +1,12 @@
+[submodule "social-deployment"]
+	path = social-deployment
+	url = git@github.com:citkane/social-deployment.git
+[submodule "social-frontend"]
+	path = social-frontend
+	url = git@github.com:citkane/social-frontend.git
+[submodule "social-images"]
+	path = social-images
+	url = git@github.com:citkane/social-images.git
+[submodule "social-persistance"]
+	path = social-persistance
+	url = git@github.com:citkane/social-persistance.git
