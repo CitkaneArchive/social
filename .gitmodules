@@ -12,10 +12,10 @@
 	url = git@github.com:citkane/social-persistance.git
 [submodule "social-pubsubProxy"]
 	path = social-pubsubProxy
-	url = git://github.com/citkane/social-pubsubProxy
+	url = git@github.com:citkane/social-pubsubProxy
 [submodule "social-users"]
 	path = social-users
-	url = git://github.com/citkane/social-users
+	url = git@github.com:citkane/social-users
 [submodule "social-activities"]
 	path = social-activities
 	url = git@github.com:citkane/social-activities.git
