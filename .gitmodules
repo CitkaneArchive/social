@@ -19,3 +19,6 @@
 [submodule "social-activities"]
 	path = social-activities
 	url = git@github.com:citkane/social-activities.git
+[submodule "social-voting"]
+	path = social-voting
+	url = git@github.com:citkane/social-voting.git
