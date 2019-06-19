@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "jsdoc": "./node_modules/.bin/jsdoc -c jsdocConfig.js -d docs"
+    "jsdoc": "node ./src/makeDocs.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,13 @@
   },
   "homepage": "https://github.com/citkane/social#readme",
   "devDependencies": {
+    "docdash": "^1.1.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
     "jsdoc": "^3.6.2"
+  },
+  "dependencies": {
+    "fs-extra": "^8.0.1"
   }
 }
