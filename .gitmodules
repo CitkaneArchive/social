@@ -1,6 +1,3 @@
-[submodule "social-deployment"]
-	path = social-deployment
-	url = git@github.com:citkane/social-deployment.git
 [submodule "social-frontend"]
 	path = social-frontend
 	url = git@github.com:citkane/social-frontend.git
