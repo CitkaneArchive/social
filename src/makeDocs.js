@@ -1,6 +1,8 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
 const fs = require('fs-extra');
 const path = require('path');
-const { spawn } = require('child_process');
+const { fork } = require('child_process');
 
 const rootDir = path.join(__dirname, '../');
 
@@ -8,23 +10,27 @@ const services = fs.readdirSync(rootDir).filter(dPath => fs.lstatSync(dPath).isD
     && dPath.startsWith('social-'));
 
 let indexHtml = '';
+fs.emptyDirSync(path.join(rootDir, './docs'));
 services.forEach((service) => {
+    const serviceDir = path.join(rootDir, service);
+    const { version } = require(path.join(serviceDir, 'package.json'));
     indexHtml += `
-<a href="${service}/index.html">${service}</a>
+<a href="@social/${service.split('-')[1]}/${version}/index.html">${service}</a>
     `;
-    fs.emptyDirSync(path.join(rootDir, './docs', service));
-    spawn('node', [
-        './node_modules/.bin/jsdoc',
+    fork('node_modules/.bin/jsdoc', [
         '-r',
         '-t',
         `${rootDir}/node_modules/docdash`,
         '-c',
         './src/jsdocConfig.js',
         '-d',
-        `./docs/${service}`,
-        `${rootDir}/${service}/src`
+        './docs'
     ], {
-        cwd: rootDir
+        cwd: rootDir,
+        env: {
+            ROOT_DIR: serviceDir,
+            DOC_ROOT: path.join(rootDir, 'docs', 'index.html')
+        }
     });
 });
 
