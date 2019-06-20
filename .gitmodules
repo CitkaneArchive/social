@@ -16,3 +16,6 @@
 [submodule "social-voting"]
 	path = social-voting
 	url = git@github.com:citkane/social-voting.git
+[submodule "social-pubsubproxy"]
+	path = social-pubsubproxy
+	url = git@github.com:citkane/social-pubsubproxy.git
