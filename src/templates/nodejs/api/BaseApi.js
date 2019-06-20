@@ -20,14 +20,20 @@ const malformedErrorMsg = {
     message: 'malformed api call'
 };
 
-function makeMessage(ownerId, action, command, args = []) {
+function makeRequest(resource, args = [], ownerId) {
     let thisArgs = args;
     if (!Array.isArray(thisArgs)) thisArgs = [thisArgs];
-    return JSON.stringify({
-        ownerId,
-        action,
-        command,
-        args: thisArgs
+    return new Promise((resolve, reject) => {
+        const split = resource.split('.');
+        const action = split[0];
+        const command = split[1];
+        if (!action || !command) reject(malformedErrorMsg);
+        resolve({
+            ownerId,
+            action,
+            command,
+            args: thisArgs
+        });
     });
 }
 
@@ -36,13 +42,17 @@ function GetReqSocket(type) {
     this.socket = zmq.socket('req');
 }
 
-GetReqSocket.prototype.send = function (ownerId, action, command, args) {
-    const message = makeMessage(ownerId, action, command, args);
-    return this.proxy(message);
+GetReqSocket.prototype.send = async function (ownerId, action, command, args) {
+    try {
+        const request = makeRequest(ownerId, action, command, args);
+        return this.proxy(request);
+    } catch (err) {
+        return err;
+    }
 };
 
-GetReqSocket.prototype.proxy = function (message) {
-    let mess = message;
+GetReqSocket.prototype.proxy = function (request) {
+    let mess = request;
     if (typeof mess === 'object') mess = JSON.stringify(mess);
     return new Promise((resolve, reject) => {
         const socket = zmq.socket('req');
@@ -85,29 +95,31 @@ class BaseApi {
             update: (path, args, ownerId = null) => this.builder('update', path, args || [], ownerId),
             delete: (path, args, ownerId = null) => this.builder('delete', path, args || [], ownerId)
         };
-        /** @namespace module:pleasnameme.pubsub */
+        this.makeRequest = makeRequest;
+
+        /** @namespace module:pleasenameme.pubsub */
         this.sockets = sockets;
         /**
          * Publish a payload to a topic for all subscribed microservices.
-         * @method module:pleasnameme.pubsub#publish
+         * @method module:pleasenameme.pubsub#publish
          * @param {String} topic - The topic to publish.
          * @param {any} data - the payload to publish to the topic.
          */
         this.publish = function (...args) { return sockets.publish(args); };
         /**
          * Subscribe to a topic.
-         * @method module:pleasnameme.pubsub#subscribe
+         * @method module:pleasenameme.pubsub#subscribe
          * @param {String} topic - The topic to subscribe to.
          */
         this.subscribe = function (...args) { return sockets.subscribe(args); };
         /**
          * Unsubscribe from a topic.
-         * @method module:pleasnameme.pubsub#unsubscribe
+         * @method module:pleasenameme.pubsub#unsubscribe
          * @param {String} topic - The topic to unsubscribe from.
          */
         this.unsubscribe = function (...args) { return sockets.unsubscribe(args); };
         /**
-         * @method module:pleasnameme.pubsub#on
+         * @method module:pleasenameme.pubsub#on
          * @param {String} topic - The topic to subscribe to;
          * @param {Function} callBack - The function to call when a subscribed topic is recieved.
          * @example
@@ -117,6 +129,7 @@ class BaseApi {
     }
 
     getReqSocket(type) {
+        if (!type) return GetReqSocket;
         return new GetReqSocket(type);
     }
 
@@ -128,12 +141,6 @@ class BaseApi {
     resolve(status, payload = false) {
         if (!status || typeof status !== 'number') return this.reject();
         return Promise.resolve({ status, payload });
-    }
-
-    checkStatus(response) {
-        if (!response.status || typeof response.status !== 'number') return this.reject();
-        if (response.status > 199 && response.status < 300) return response;
-        return Promise.reject(response);
     }
 }
 
