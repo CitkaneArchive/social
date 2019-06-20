@@ -7,7 +7,7 @@ function run {
 printf "\e]2;social-deployment\a"
 #cd ../social-images
 #run "node index" "social-images"
-cd ../social-users
+cd ./social-users
 run "npm start" "social-users"
 cd ../social-pubsubproxy
 run "npm start" "social-pubsubproxy"
