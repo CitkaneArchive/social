@@ -4,8 +4,7 @@
   "description": "A workpalce social CMS built on a microservice pattern",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "jsdoc": "node ./src/makeDocs.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

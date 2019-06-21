@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { fork } = require('child_process');
 
-const rootDir = path.join(__dirname, '../');
+const rootDir = path.join(__dirname, '../../');
 
 const services = fs.readdirSync(rootDir).filter(dPath => fs.lstatSync(dPath).isDirectory()
     && dPath.startsWith('social-'));
@@ -20,7 +20,7 @@ services.forEach((service) => {
     fork('node_modules/.bin/jsdoc', [
         '-r',
         '-t',
-        `${rootDir}/node_modules/docdash`,
+        './node_modules/docdash',
         '-c',
         './src/jsdocConfig.js',
         '-d',

@@ -3,3 +3,9 @@ start-pact:
 
 start-all-local:
 	src/scripts/startalllocal.sh
+
+jsdocs:
+	node src/scripts/makeDocs
+
+update-configs:
+	git submodule foreach './updateConfig.sh'
