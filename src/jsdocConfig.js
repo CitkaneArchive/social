@@ -2,7 +2,6 @@ const rootDir = process.env.ROOT_DIR;
 const docRoot = process.env.DOC_ROOT;
 const path = require('path');
 
-console.log(rootDir);
 module.exports = {
     plugins: ['plugins/markdown'],
     recurseDepth: 10,
