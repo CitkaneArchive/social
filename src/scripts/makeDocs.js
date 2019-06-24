@@ -21,6 +21,10 @@ let indexHtml = `
     <style>
         body {
             padding-top:12px;
+            
+        }
+        #inner {
+            padding-bottom:40px;
         }
         menu {
             padding: 0;
@@ -34,6 +38,7 @@ let indexHtml = `
     </style>
 </head>
 <body>
+<div id="inner">
 <h4>Documentation: </h4>
 <menu>
 `;
@@ -82,9 +87,11 @@ indexHtml += `
     </div>
     <h2>Messaging</h2>
     <div class="content">
-        <p>"SOCIAL" provides a common internal API across all services with pub/sub, req/res and push/pull patterns<p>
-        <p>This is implemented using <a href="http://zeromq.org/" target="_blank">ØMQ</a>, a distributed messaging solution.</p>
+        <p>"SOCIAL" provides a common internal API syntax across all services with pub/sub, req/res and push/pull patterns<p>
+        <p>This is implemented using <a href="http://zeromq.org/" target="_blank">ØMQ</a>, a distributed messaging conbobulator, actricator and choreographer.</p>
+        <p>It would appear to make a good cup of tea too....</p>
     </div>
+</div>
 </body>
 </html>
 `;
