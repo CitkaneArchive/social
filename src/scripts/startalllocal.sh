@@ -4,10 +4,8 @@ function run {
 	echo $(pwd) $1
 	gnome-terminal --tab -- bash -c "echo -en '\033]0;$2\a'; $1"
 }
-printf "\e]2;social-deployment\a"
-#cd ../social-images
-#run "node index" "social-images"
-cd ../social-users
+printf "\e]2;social\a"
+cd ./social-users
 run "npm start" "social-users"
 cd ../social-pubsubproxy
 run "npm start" "social-pubsubproxy"

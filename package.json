@@ -4,8 +4,7 @@
   "description": "A workpalce social CMS built on a microservice pattern",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "jsdoc": "node ./src/makeDocs.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,6 +17,7 @@
   },
   "homepage": "https://github.com/citkane/social#readme",
   "devDependencies": {
+    "config": "^3.1.0",
     "docdash": "^1.1.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
