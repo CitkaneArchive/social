@@ -3,6 +3,9 @@
 const fs = require('fs-extra');
 const path = require('path');
 const { fork } = require('child_process');
+const config = require('config');
+
+const pacts = config.get('pacts');
 
 const rootDir = path.join(__dirname, '../../');
 
@@ -36,6 +39,7 @@ let indexHtml = `
             max-width:650px;
         }
     </style>
+
 </head>
 <body>
 <div id="inner">
@@ -83,7 +87,7 @@ indexHtml += `
     <div class="content">
         <p>"SOCIAL" follows a "Consumer Driven Contract" testing pattern, using the <a href="https://docs.pact.io/" target="_blank">Pact</a> framework.<p>
         <p>Consumer services publish their expectation tests to a central broker, and providers run their tests against these expectations</p>
-        <p>The broker can be accessed via the link in the main menu.</p>
+        <p><h4><a id="pactLink" target="_blank">PACT BROKER -></a></h4></p>
     </div>
     <h2>Messaging</h2>
     <div class="content">
@@ -92,6 +96,12 @@ indexHtml += `
         <p>It would appear to make a good cup of tea too....</p>
     </div>
 </div>
+<script>
+    const pactsPort = ${pacts.port};
+    const host = parent.location.hostname;
+    const pactLink = document.getElementById('pactLink');
+    pactLink.setAttribute('href', 'http://'+host+':'+pactsPort);
+</script>
 </body>
 </html>
 `;

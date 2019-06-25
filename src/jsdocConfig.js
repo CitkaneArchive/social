@@ -19,9 +19,9 @@ module.exports = {
         sort: true,
         sectionOrder: [
             'Tutorials',
+            'Modules',
             'Interfaces',
             'Events',
-            'Modules',
             'Namespaces',
             'Classes',
             'Externals',

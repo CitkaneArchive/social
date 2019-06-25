@@ -1,5 +1,8 @@
-start-pact:
-	src/scripts/startPact.sh
+pact-start:
+	node src/scripts/startPact.js
+
+pact-stop:
+	src/scripts/stopPact.sh
 
 start-all-local:
 	src/scripts/startalllocal.sh
