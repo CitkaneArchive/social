@@ -19,13 +19,13 @@ module.exports = {
         sort: true,
         sectionOrder: [
             'Tutorials',
+            'Interfaces',
+            'Events',
             'Modules',
             'Namespaces',
-            'Events',
             'Classes',
             'Externals',
-            'Mixins',
-            'Interfaces'
+            'Mixins'
         ],
         collapse: true,
         typedefs: true,
